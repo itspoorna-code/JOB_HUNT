@@ -11,7 +11,7 @@ const JobList = () => {
   // Fetching job data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/jobs")
+      .get("https://job-hunt-nw7o.onrender.com/api/jobs")
       .then((response) => {
         setJobs(response.data.data.jobs); // Assuming response data structure
         setLoading(false);

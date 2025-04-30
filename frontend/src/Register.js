@@ -12,7 +12,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/accounts/signup",
+        "https://job-hunt-nw7o.onrender.com/api/accounts/signup",
         {
           email,
           password,

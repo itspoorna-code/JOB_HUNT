@@ -13,7 +13,7 @@ const ApplyForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/applications",
+        "https://job-hunt-nw7o.onrender.com/api/applications",
         {
           jobId, // make sure you are sending jobId
           name,

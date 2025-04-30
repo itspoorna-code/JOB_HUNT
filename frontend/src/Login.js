@@ -11,10 +11,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/accounts/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://job-hunt-nw7o.onrender.com/api/accounts/login",
+        {
+          email,
+          password,
+        }
+      );
       alert("Login successful!");
       console.log("Token:", res.data.token);
       localStorage.setItem("token", res.data.token); // Store the token in localStorage
