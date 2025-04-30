@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./App.css"; // Reuse your CSS
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ const Register = () => {
       alert("Registration successful!");
       console.log("Token:", response.data.token);
       localStorage.setItem("token", response.data.token); // Store the token in localStorage
+      navigate("/");
     } catch (error) {
       console.error("Registration failed:", error);
       alert(

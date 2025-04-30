@@ -1,36 +1,30 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook
-import "./App.css"; // Reuse your CSS
+import { useNavigate } from "react-router-dom";
+import "./App.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://job-hunt-nw7o.onrender.com/api/accounts/login",
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post("https://job-hunt-nw7o.onrender.com/api/accounts/login", {
+        email,
+        password,
+      });
       alert("Login successful!");
-      console.log("Token:", res.data.token);
-      localStorage.setItem("token", res.data.token); // Store the token in localStorage
-
-      // Redirect to JobList page after successful login
-      navigate("/job-list"); // Make sure you have the route for JobList set up
+      localStorage.setItem("token", res.data.token);
+      navigate("/job-list");
     } catch (err) {
-      console.error(
-        "Login failed:",
-        err.response?.data?.message || err.message
-      );
       alert("Login failed: " + (err.response?.data?.message || err.message));
     }
+  };
+
+  const goToSignup = () => {
+    navigate("/signup"); // Ensure the /register route exists
   };
 
   return (
@@ -58,6 +52,13 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      <div className="signup-section">
+        <p>Don't have an account?</p>
+        <button className="auth-button secondary" onClick={goToSignup}>
+          Create Account
+        </button>
+      </div>
     </div>
   );
 };

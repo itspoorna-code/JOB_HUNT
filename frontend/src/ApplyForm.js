@@ -3,21 +3,24 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ApplyForm = () => {
-  const { jobId } = useParams(); // important: get jobId from URL
+  const { jobId } = useParams(); // Get jobId from URL
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [resume, setResume] = useState(""); // resume URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(
         "https://job-hunt-nw7o.onrender.com/api/applications",
         {
-          jobId, // make sure you are sending jobId
+          jobId,
           name,
           email,
+          resume, // send resume URL
         }
       );
 
@@ -50,6 +53,15 @@ const ApplyForm = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label>Resume URL:</label>
+        <input
+          type="url"
+          placeholder="Paste resume URL here"
+          value={resume}
+          onChange={(e) => setResume(e.target.value)}
           required
         />
 
